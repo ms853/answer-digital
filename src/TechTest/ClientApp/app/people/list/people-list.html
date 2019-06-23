@@ -1,33 +1,57 @@
 <template>
-  
-  <h2 class="title">${heading}</h2>
-  <table class="table is-striped is-fullwidth">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Palindrome</th>
-        <th>Authorised</th>
-        <th>Enabled</th>
-        <th>Colours</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-      <!--
-        TODO: Step 6
-        Add styles to Palindrome, Authorised and Enabled values.
-        When the value is Yes the text colour should be Green.
-        When the value is No the text colour should be Red.
-      -->
+    <script>
+        var outcome1 = document.getElementsById("paldin").value;
+        var outcome2 = document.getElementsById("authorised").value;
+        var outcome3 = document.getElementsById("enabled").value;
+        
+        if (outcome1 == 'Yes') {
+            document.getElementsById("paldin").style.color = "Green";
+        } else
+        {
+            document.getElementsById("paldin").style.color = "Red";
+        }
 
-      <tr repeat.for="person of people" person.bind="person">
-        <td><a class="is-link" href="/people/${person.id}">${person.fullName}</a></td>
-        <td>${person.palindrome ? 'Yes' : 'No'}</td>
-        <td>${person.authorised ? 'Yes' : 'No'}</td>
-        <td>${person.enabled ? 'Yes' : 'No'}</td>
-        <td>${person.colours | colourNames }</td>
-      </tr>
-    </tbody>
-  </table>
+        if (outcome2 == 'Yes') {
+            document.getElementsById("authorised").style.color = "Green";
+        } else {
+            document.getElementsById("authorised").style.color = "Red";
+        }
+
+        if (outcome3 == 'Yes') {
+            document.getElementsById("enabled").style.color = "Green";
+        } else {
+            document.getElementsById("enabled").style.color = "Red";
+        }
+    </script>
+    <h2 class="title">${heading}</h2>
+    <table class="table is-striped is-fullwidth">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Palindrome</th>
+                <th>Authorised</th>
+                <th>Enabled</th>
+                <th>Colours</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <!--
+              TODO: Step 6
+              Add styles to Palindrome, Authorised and Enabled values.
+              When the value is Yes the text colour should be Green.
+              When the value is No the text colour should be Red.
+            -->
+
+            <tr repeat.for="person of people" person.bind="person">
+                <td><a class="is-link" href="/people/${person.id}">${person.fullName}</a></td>
+                <td id="paldin">${person.palindrome ? 'Yes' : 'No'}</td>
+                <td id="authorised">${person.authorised ? 'Yes' : 'No'}</td>
+                <td id="enabled">${person.enabled ? 'Yes' : 'No'}</td>
+                <td>${person.colours | colourNames }</td>
+            </tr>
+        </tbody>
+    </table>
+
 
 </template>
