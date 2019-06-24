@@ -42,9 +42,27 @@ export class PersonEdit {
     // Implement the submit and save logic.
     // Send a JSON request to the API with the newly updated
     // this.person object. If the response is successful then
-    // the user should be navigated to the list page.
+      // the user should be navigated to the list page.
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      var myInit = {
+          method: 'PUT',
+          headers,
+          body: JSON.stringify(this.person),
+      }; //request type object 
 
-    throw new Error('Not Implemented');
+      const { fetch } = this.http; //destructuring
+
+      const request = new Request(`/people/${this.person.id}`, myInit); //
+      const response = await fetch(request);
+      const responseStatus = await response.status;
+
+      if (responseStatus == 200) {
+          this.router.navigate('people-list');
+      } else {
+          throw new Error('Something went wrong');
+      }
+      //this.router.navigate('people-list');
   }
 
   cancel() {
